@@ -1,22 +1,36 @@
 import React, { useState } from "react";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
 
-// icons
-import {
-  FaHtml5,
-  FaCss3,
-  FaJs,
-  FaReact,
-  FaWordpress,
-  FaFigma,
-} from "react-icons/fa";
+import { HtmlIcon } from "../../components/Skills/HtmlIcon"; 
+import { CssIcon } from "../../components/Skills/CssIcon";
+import { JsIcon } from "../../components/Skills/JsIcon";
+import { ReactIcon } from "../../components/Skills/ReactIcon";
+import { BtStrapIcon } from "../../components/Skills/BtStrapIcon"; 
+import { TailwindIcon } from "../../components/Skills/TailwindIcon";
+import { PhpIcon } from "../../components/Skills/PhpIcon";
+import { NodeIcon } from "../../components/Skills/NodeIcon";
+import { JavaIcon } from "../../components/Skills/JavaIcon";
+import { PythonIcon } from "../../components/Skills/PythonIcon";
+import { ExpressIcon } from "../../components/Skills/ExpressIcon";
+import { CIcon } from "../../components/Skills/CIcon";
+import { Cpp } from "../../components/Skills/Cpp";
+import { Kotlin } from "../../components/Skills/Kotlin";
+import { R } from "../../components/Skills/R";
+import { SqlIcon } from "../../components/Skills/SqlIcon";
+import { Mongo } from "../../components/Skills/Mongo";
+import { Firebase, FirebaseIcon } from "../../components/Skills/FirebaseIcon";
+import { Figma } from "../../components/Skills/Figma";
+import { Git } from "../../components/Skills/Git";
+import { Github } from "../../components/Skills/Github";
+import { Postman } from "../../components/Skills/Postman";
+import { Androidstudio } from "../../components/Skills/AndroidStudio";
+import { Vscode } from "../../components/Skills/Vscode";
+import { PowerBi } from "../../components/Skills/PowerBi";
+import { Arduino } from "../../components/Skills/Arduino";
 
-import {
-  SiNextdotjs,
-  SiFramer,
-  SiAdobexd,
-  SiAdobephotoshop,
-} from "react-icons/si";
-
+  
 
 //  data
 const aboutData = [
@@ -24,70 +38,75 @@ const aboutData = [
     title: 'skills',
     info: [
       {
-        title: 'Web Development',
+        title: 'Front-end',
         icons: [
-          <FaHtml5 />,
-          <FaCss3 />,
-          <FaJs />,
-          <FaReact />,
-          <SiNextdotjs />,
-          <SiFramer />,
-          <FaWordpress />,
+          {icon: <HtmlIcon />, name:'HTML'},
+          {icon: <CssIcon />, name:'CSS'},
+          { icon: <JsIcon/>, name: 'JavaScript' },
+          { icon: <ReactIcon/>, name: 'React' },
+          { icon: <BtStrapIcon/>, name: 'Bootstrap' },
+          { icon: <TailwindIcon/>, name: 'Tailwind CSS' },
         ],
       },
       {
-        title: 'UI/UX Design',
-        icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        title: 'Back-end',
+        icons: [
+          { icon: <PhpIcon/>, name: 'PHP' },
+          { icon: <NodeIcon/>, name: 'Node.js' },
+          { icon: <JavaIcon/>, name: 'Java' },
+          { icon: <PythonIcon/>, name: 'Python' },
+          { icon: <ExpressIcon/>, name: 'Express.js' },
+          { icon: <CIcon/>, name: 'C' },
+          { icon: <Cpp/>, name: 'C++' },
+          { icon: <Kotlin/>, name: 'Kotlin' },
+          { icon: <R/>, name: 'R' }
+        ],
+      },
+      {
+        title: 'Database',
+        icons: [
+          { icon: <SqlIcon/>, name: 'Sql'},
+          { icon: <Mongo/>, name: 'MongoDB' },
+          
+        ],
+      },
+      {
+        title: 'Tools',
+        icons: [
+          { icon: <Figma/>, name: 'Figma' },
+          { icon: <Git/>, name: 'Git' },
+          { icon: <Github/>, name: 'Github' },
+          { icon: <Postman/>, name: 'Postman' },
+          { icon: <Androidstudio/>, name: "Android Studio" },
+          { icon: <Vscode/>, name: 'VS Code' },
+          { icon: <Arduino />, name: 'Arduino' }
+        ],
       },
     ],
   },
   {
-    title: 'awards',
+    title: 'achievements',
     info: [
       {
-        title: 'Webby Awards - Honoree',
-        stage: '2011 - 2012',
+        title: 'Sololearn introduction to Java course'
+        
       },
       {
-        title: 'Adobe Design Achievement Awards - Finalist',
+        title: 'Sololearn introduction to Java course',
         stage: '2009 - 2010',
       },
-    ],
-  },
-  {
-    title: 'experience',
-    info: [
       {
-        title: 'UX/UI Designer - XYZ Company',
-        stage: '2012 - 2023',
+        title: 'Great Learning SQL Project for Beginners course',
+        stage: '2009 - 2010',
       },
       {
-        title: 'Web Developer - ABC Agency',
-        stage: '2010 - 2012',
-      },
-      {
-        title: 'Intern - DEF Corporation',
-        stage: '2008 - 2010',
+        title: 'Great Learning Introduction to Design Thinking course',
+        
       },
     ],
   },
-  {
-    title: 'credentials',
-    info: [
-      {
-        title: 'Web Development - ABC University, LA, CA',
-        stage: '2011',
-      },
-      {
-        title: 'Computer Science Diploma - AV Technical Institute',
-        stage: '2009',
-      },
-      {
-        title: 'Certified Graphic Designer - ABC Institute, Los Angeles, CA',
-        stage: '2006',
-      },
-    ],
-  },
+
+ 
 ];
 
 // components
@@ -101,11 +120,21 @@ import { fadeIn } from "../../variants";
 // counter
 import CountUp from "react-countup";
 
+const bull = (
+  <Box
+    component="span"
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
+    •
+  </Box>
+);
+
+
 const About = () => {
   const [index, setIndex] = useState(0);
   console.log(index);
   return (
-    <div className="h-full bg-primary/30 py-32 text-center xl:text-left">
+    <div className="h-full bg-primary/30 py-32 text-center xl:text-right">
       <Circles />
       {/* avatar img */}
       <motion.div 
@@ -117,130 +146,75 @@ const About = () => {
       >
           <Avatar />
       </motion.div>
-      <div className="container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6">
-        {/* text */}
-        <div className="flex-1 flex flex-col justify-center">
-          <motion.h2 
-            variants={fadeIn('right', 0.2)}
-            initial='hidden'
-            animate='show'
-            exit='hidden'
-            className='h2'
-          >
-            Captivating <span className="text-accent">stories</span> 
-            birth magnificent designs.
-          </motion.h2>
-          <motion.p 
-            variants={fadeIn('right', 0.4)}
-            initial='hidden'
-            animate='show'
-            exit='hidden'
-            className="max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0"
-          >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut
-          </motion.p>
-          {/* counters */}
-          <motion.div 
-            variants={fadeIn('right', 0.6)}
-            initial='hidden'
-            animate='show'
-            exit='hidden'
-            className="hidden md:flex md:max-w-xl xl:max-w-none mx-auto xl:mx-0 mb-8"
-          >
-            <div className="flex flex-1 xl:gap-x-6">
-              {/* experience */}
-              <div className="relative flex-1 after:w-[1px] after:h-full
-              after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={10} duration={5} /> +
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1,4] max-w-[100px]">
-                  Years of experience
-                </div>
+
+      
+
+      <Card sx={{ minWidth: 275 }} className="bg-black/10" >
+        <CardContent>
+          {/* <div className="container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6 justify-center">
+            text */}
+          
+
+            {/* info */}
+            <motion.div 
+              variants={fadeIn('left', 0.2)}
+              initial='hidden'
+              animate='show'
+              exit='hidden'
+              className="flex flex-col w-full xl:max-w-[48%] h-[480px]">
+              <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4">
+                {aboutData.map((item, itemIndex) => {
+                  return (
+                    <div 
+                      key={itemIndex}
+                      className={`${
+                        index === itemIndex &&
+                        'text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300'
+                      }  cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] 
+                      after:bg-white after:absolute after:-bottom-1 after:left-0`}
+                      onClick={() => setIndex(itemIndex)}
+                    >
+                      {item.title}
+                    </div>
+                  );
+                })}
               </div>
-              {/* clients */}
-              <div className="relative flex-1 after:w-[1px] after:h-full
-              after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={250} duration={5} /> +
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1,4] max-w-[100px]">
-                  Satisfied clients
-                </div>
+              <div className="py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center 
+              xl:items-start">
+                {aboutData[index].info.map((item, itemIndex)=> {
+                  return (
+                    <div 
+                      key={itemIndex}
+                      className="flex-1 flex flex-col md:flex-row max-w-max gap-x-2
+                      items-center text-white/60"
+                    >
+                      {/* title */}
+                      <div className="font-light mb-2 md:mb-0">Front-end</div>
+                      <div className="hidden md:flex">-</div>
+                      <div>{item.stage}</div>
+                      <div className="flex gap-x-4">
+                        {/* icons */}
+                        {item.icons?.map((iconItem, itemIndex) => {
+
+                      
+
+                          return (
+                            <div key={itemIndex} className={`flex items-center gap-2 text-white border border-white rounded-md p-2 `}>
+                              <div className="text-2xl ">{iconItem.icon}</div>
+                              <div className="overflow-hidden whitespace-nowrap">{iconItem.name}</div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
-               {/* projecs */}
-               <div className="relative flex-1 after:w-[1px] after:h-full
-              after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={650} duration={5} /> +
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1,4] max-w-[100px]">
-                  Finished projects
-                </div>
-              </div>
-                {/* awards */}
-                <div className="relative flex-1">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={8} duration={5} /> +
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1,4] max-w-[100px]">
-                  Winning awards
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-        {/* info */}
-        <motion.div 
-          variants={fadeIn('left', 0.2)}
-          initial='hidden'
-          animate='show'
-          exit='hidden'
-          className="flex flex-col w-full xl:max-w-[48%] h-[480px]">
-          <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4">
-            {aboutData.map((item, itemIndex) => {
-              return (
-                <div 
-                  key={itemIndex}
-                  className={`${
-                    index === itemIndex &&
-                    'text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300'
-                  }  cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] 
-                  after:bg-white after:absolute after:-bottom-1 after:left-0`}
-                  onClick={() => setIndex(itemIndex)}
-                >
-                  {item.title}
-                </div>
-              );
-            })}
-          </div>
-          <div className="py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center 
-          xl:items-start">
-            {aboutData[index].info.map((item, itemIndex)=> {
-              return (
-                <div 
-                  key={itemIndex}
-                  className="flex-1 flex flex-col md:flex-row max-w-max gap-x-2
-                  items-center text-white/60"
-                >
-                  {/* title */}
-                  <div className="font-light mb-2 md:mb-0">{item.title}</div>
-                  <div className="hidden md:flex">-</div>
-                  <div>{item.stage}</div>
-                  <div className="flex gap-x-4">
-                    {/* icons */}
-                    {item.icons?.map((icon, itemIndex) => {
-                      return <div className="text-2xl text-white">{icon}</div>
-                    })}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </motion.div>
-      </div>
+            </motion.div>
+          {/* </div> */}
+        </CardContent>
+      </Card>
+      
     </div>
   );
 };
