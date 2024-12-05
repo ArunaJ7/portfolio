@@ -31,9 +31,7 @@ const Work= () => {
               exit='hidden'
               className='mb-4 max-w-[400px] mx-auto lg:mx-0'
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-              sed do eiusmod tempor incididunt ut labore et dolore 
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+              These are my some of projects I'am engage with throughout this journey.
             </motion.p>
           </div>
 

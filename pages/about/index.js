@@ -3,6 +3,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 
+import SubCard from "../../components/SubCard";
+
 import { HtmlIcon } from "../../components/Skills/HtmlIcon"; 
 import { CssIcon } from "../../components/Skills/CssIcon";
 import { JsIcon } from "../../components/Skills/JsIcon";
@@ -84,27 +86,27 @@ const aboutData = [
       },
     ],
   },
-  {
-    title: 'achievements',
-    info: [
-      {
-        title: 'Sololearn introduction to Java course'
+  // {
+  //   title: 'achievements',
+  //   info: [
+  //     {
+  //       title: 'Sololearn introduction to Java course'
         
-      },
-      {
-        title: 'Sololearn introduction to Java course',
-        stage: '2009 - 2010',
-      },
-      {
-        title: 'Great Learning SQL Project for Beginners course',
-        stage: '2009 - 2010',
-      },
-      {
-        title: 'Great Learning Introduction to Design Thinking course',
+  //     },
+  //     {
+  //       title: 'Sololearn introduction to Java course',
+  //       stage: '2009 - 2010',
+  //     },
+  //     {
+  //       title: 'Great Learning SQL Project for Beginners course',
+  //       stage: '2009 - 2010',
+  //     },
+  //     {
+  //       title: 'Great Learning Introduction to Design Thinking course',
         
-      },
-    ],
-  },
+  //     },
+  //   ],
+  // },
 
  
 ];
@@ -149,69 +151,49 @@ const About = () => {
 
       
 
-      <Card sx={{ minWidth: 275 }} className="bg-black/10" >
-        <CardContent>
-          {/* <div className="container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6 justify-center">
-            text */}
+      <Card sx={{ minWidth: 275, maxWidth: '80%', backgroundColor: 'transparent', margin: 'auto', borderRadius: '16px', width: 'auto', height: '130%'}} className="bg-black/10" >
+        <CardContent >
           
-
             {/* info */}
             <motion.div 
               variants={fadeIn('left', 0.2)}
               initial='hidden'
               animate='show'
               exit='hidden'
-              className="flex flex-col w-full xl:max-w-[48%] h-[480px]">
-              <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4">
-                {aboutData.map((item, itemIndex) => {
-                  return (
-                    <div 
-                      key={itemIndex}
-                      className={`${
-                        index === itemIndex &&
-                        'text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300'
-                      }  cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] 
-                      after:bg-white after:absolute after:-bottom-1 after:left-0`}
-                      onClick={() => setIndex(itemIndex)}
-                    >
-                      {item.title}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center 
-              xl:items-start">
-                {aboutData[index].info.map((item, itemIndex)=> {
-                  return (
-                    <div 
-                      key={itemIndex}
-                      className="flex-1 flex flex-col md:flex-row max-w-max gap-x-2
-                      items-center text-white/60"
-                    >
-                      {/* title */}
-                      <div className="font-light mb-2 md:mb-0">Front-end</div>
-                      <div className="hidden md:flex">-</div>
-                      <div>{item.stage}</div>
-                      <div className="flex gap-x-4">
-                        {/* icons */}
-                        {item.icons?.map((iconItem, itemIndex) => {
+              className="flex flex-col w-full items-center justify-center"
+            >
 
-                      
+              <div className="py-4 px-6">
 
-                          return (
-                            <div key={itemIndex} className={`flex items-center gap-2 text-white border border-white rounded-md p-2 `}>
-                              <div className="text-2xl ">{iconItem.icon}</div>
-                              <div className="overflow-hidden whitespace-nowrap">{iconItem.name}</div>
-                            </div>
-                          )
-                        })}
+                <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4">
+                  {aboutData.map((item, itemIndex) => {
+                    return (
+                      <div 
+                        key={itemIndex}
+                        // className={`${
+                        //   index === itemIndex &&
+                        //   'text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300'
+                        // }  cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] 
+                        // after:bg-white after:absolute after:-bottom-1 after:left-0`}
+                        className={`cursor-pointer capitalize xl:text-lg relative ${index === itemIndex ? 'text-accent after:w-full after:bg-accent' : 'text-white'} after:h-[2px] after:absolute after:-bottom-1 after:left-0 after:transition-all after:duration-300 mb-4`}
+                        onClick={() => setIndex(itemIndex)}
+                      >
+                        {item.title}
                       </div>
-                    </div>
-                  )
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+
+                <div className="flex flex-wrap justify-center gap-4 pt-6">
+                  {aboutData[index].info.map((item, itemIndex) => (
+                    <SubCard key={itemIndex} title={item.title} icons={item.icons || []} />
+                  ))}
+                </div>
+
+
+              </div> 
+              
             </motion.div>
-          {/* </div> */}
         </CardContent>
       </Card>
       
